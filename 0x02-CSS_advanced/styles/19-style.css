@@ -160,3 +160,6 @@ ul .row {
     font-size: var(--font-size-small);
     color: var(--text-color);
 }
+ul.footer {
+    text-align: right;
+}
