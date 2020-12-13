@@ -30,7 +30,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 62.5%;
-    line-height:1.15;
+
 }
 body {
     color: var(--text-color);
