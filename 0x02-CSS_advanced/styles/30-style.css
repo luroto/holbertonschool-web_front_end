@@ -300,7 +300,7 @@ ul.row {
 .card-work .card-inner {
     position: relative;
     top: -0.1rem;
-    left: -01rem;
+    left: -0.1rem;
     right: -0.1rem;
     z-index: 1;
 }
