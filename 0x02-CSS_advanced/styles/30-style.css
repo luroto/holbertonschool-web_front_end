@@ -298,7 +298,7 @@ ul.row {
 }
 
 .card-work .card-inner {
-    position: relative;
+    position: absolute;
     top: -0.1rem;
     left: -0.1rem;
     right: -0.1rem;
