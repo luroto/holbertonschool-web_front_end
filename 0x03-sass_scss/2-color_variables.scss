@@ -1,0 +1,14 @@
+/*Assigning variables*/
+$coloring: #3D3D3D;
+$background_coloring: #6D6D6D;
+
+body {
+    color: $coloring;
+    background-color: $background_coloring;
+}
+p   { 
+    color: $background_coloring;
+}
+h2  {
+    background-color: $background_coloring;
+}
