@@ -1,0 +1,29 @@
+/* More with media queries*/
+
+$color: #1D1D1D;
+$bigfont: 20px;
+$mediumfont: 18px;
+$regularfont: 16px;
+$smallerfont: 14px;
+
+h1 {
+    font-size: $bigfont;
+    @media screen and (max-width: 960px) {
+        & {
+            font-size: $mediumfont;
+        }
+    }
+    @media screen and (max-width: 640px) {
+        & {
+            font-size: $regularfont;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        & {
+            font-size: $smallerfont;
+            &.small {
+                color: $color;
+            }
+        } 
+    }
+}

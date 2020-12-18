@@ -1,0 +1,14 @@
+/* SASS with media query*/
+
+$bigfont: 20px;
+$smallerfont: 14px;
+
+h1 {
+    font-size: $bigfont;
+    @media screen and (max-width: 320px) {
+        & {
+            font-size: $smallerfont;
+        }
+    }
+}
+© 2020 GitHub, Inc.
