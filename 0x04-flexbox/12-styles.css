@@ -561,5 +561,5 @@
 
 .post-aside {
   order: -1;
-  min.width: 20%;
+  min-width: 20%;
 }
