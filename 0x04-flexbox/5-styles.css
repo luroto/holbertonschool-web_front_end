@@ -60,10 +60,7 @@
     --section-footer-align: center;
   
     /** HEADER **/
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-    }
+  
     --header-padding: 4rem 0 0;
   
     /** FOOTER **/
@@ -248,7 +245,10 @@
   
   /* Header
       ============================= */
-  
+  .header-container {
+      display: flex;
+      justify-content: space-between;
+    }
   .header {
     padding: var(--header-padding);
          position: relative;
