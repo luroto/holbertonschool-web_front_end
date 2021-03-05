@@ -13,18 +13,18 @@
             };
         }
         function getCartFromStorage(){
-            if (sessionStorage.cart)
+            if (sessionStorage.cart){
                 return JSON.parse(sessionStorage.cart);
+            } else {
+                return {};
             }
-            return {};
         }
         
         function addItemToCart(item){
             let cart = getCartFromStorage();
             if(cart[item]){
                 cart[item] += 1;
-            }
-            else{
+            } else {
                 cart[item] = 1; 
             }
             sessionStorage.cart = JSON.stringify(cart);
@@ -40,6 +40,7 @@
 
         function clearCart(){
             sessionStorage.clear();
+            displayCart();
         }
 
         function createStore(){
@@ -63,11 +64,39 @@
                 heading_1.textContent = "Your cart";
                 document.body.append(heading_1);
             }
+            let divi = document.getElementsByTagName("div")[0]; 
+            if (divi !== undefined){
+                divi.removeChild(document.getElementsByTagName("ul")[1]);
+            } else {
+                let creadiv = document.createElement("div");
+                document.body.append(creadiv);
+            }
+            updateCart();
         }
 
         function updateCart(){
+            let divo = document.getElementsByTagName("div")[0];
+            let listilla = document.createElement("ul");
+            let cart = getCartFromStorage();
+            let firstItem = document.createElement("li");
+            if (Object.keys(cart).length === 0){
+                firstItem.textContent = "Your cart is empty";
+                listilla.appendChild(firstItem);
+            } else {
+                firstItem.textContent = "Clear my cart";
+                firstItem.onclick = function(){clearCart()};
+                listilla.appendChild(firstItem);
+                for (let element in cart){
+                        let li = document.createElement("li");
+                        li.onclick = function(){removeItemfromCart(element)};
+                        li.appendChild(document.createTextNode(`${element} x ${cart[element]} (remove)`));
+                        listilla.appendChild(li);
+                }
+            }
 
+            divo.appendChild(listilla);
         }
+
 
     </script>
     </head>
