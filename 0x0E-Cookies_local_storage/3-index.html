@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <script type="application/javascript">
+            function setCookies() {
+                let firstname = document.getElementById("firstname").value;
+                let email = document.getElementById("email").value;
+                let fn = 'firstname' + "=" + firstname;
+                let em = "email" + "=" + email ;
+                let d = new Date();
+                d.setTime(d.getTime() + (24*60*60*1000*10));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie =  fn + "; ";
+                document.cookie = em + "; ";
+                document.cookie = expires + "; path=/";
+                showWelcomeMessageOrForm();
+            }
+            function getCookie(name) {
+                let cookieName = name + "=";
+                let decodingCookie = decodeURIComponent(document.cookie);
+                let cookieList = decodingCookie.split(";");
+                for (let i = 0; i < cookieList.length; i++){
+                    let v = cookieList[i];
+                    while (v.charAt(0) == ' '){
+                        v = v.substring(1);
+                    }
+                    if (v.indexOf(cookieName) == 0){
+                        return v.substring(cookieName.length, v.length);
+                    }
+                }
+                return "";
+            }
+            function showCookies() {
+                setCookies();
+                let para = document.createElement("p");
+                let email = getCookie("email");
+                let fnam = getCookie("firstname");
+                let attaching = "Email: " + email + " - " + "Firstname: " + fnam; 
+                para.innerHTML = attaching;
+                document.body.append(para);
+            }
+            function showForm() {
+                let WelcomeMessage = document.getElementById("WelcomeMessage");
+                if (WelcomeMessage){
+                    WelcomeMessage.remove();
+                    document.getElementById("login-form").style.visibility = "visible";
+                }
+            }
+            function hideForm(){
+                document.getElementById("login-form").style.visibility = "hidden";
+            }
+            function deleteCookiesAndShowForm() {
+                document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+                showForm();
+            }
+            function showWelcomeMessageOrForm() {
+                let firstna = getCookie("firstname");
+                let ema = getCookie("email");
+                if (firstna === "" || ema === "") {
+                    showForm();
+                }
+                if (firstna !== "" && ema !== "") {
+                    let message = document.createElement("h1");
+                    message.id ="WelcomeMessage";
+                    let link = document.createElement("a");
+                    link.textContent = "( logout )";
+                    link.style.fontWeight = "normal";
+                    link.style.fontStyle = "italic";
+                    link.style.marginLeft = "20px";
+                    link.onclick = function (){
+                        deleteCookiesAndShowForm();
+                };
+                    message.textContent = "Welcome: " + firstna;
+                    message.appendChild(link);
+                    document.body.appendChild(message);
+                    hideForm();
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div>
+            <form id="login-form" action="">
+                <h2>Login to the website</h2>
+                <input placeholder="First name" id="firstname">
+                <input placeholder="Email" id="email">
+                <button type="button" onclick="setCookies()">Log me in</button>
+            </form>
+        </div>
+    </body>
+</html>

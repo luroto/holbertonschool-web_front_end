@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="application/javascript">
+                let availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+                if (typeof(sessionStorage) === "undefined"){
+                    alert("Sorry, your browser does not support Web storage. Try again with a better one");
+                }
+                if (typeof(sessionStorage) !== "undefined") {
+                    window.onload = function() {
+                        createStore();
+                        displayCart();
+                    };
+                }
+
+                function addItemToCart(item){
+                    sessionStorage.setItem(item, "true");
+                } 
+                function createStore(){
+                    let unorderedlist = document.createElement("ul");
+                    for (let i = 0; i < availableItems.length; i++){
+                        let li = document.createElement("li");
+                        li.onclick = function(){addItemToCart(availableItems[i])};
+                        li.appendChild(document.createTextNode(availableItems[i]));
+                        unorderedlist.appendChild(li);
+                    }
+                    document.body.append(unorderedlist);
+                }
+
+                function displayCart(){
+                    tot = sessionStorage.length;
+                    if (tot > 0) {
+                        let total_items = document.createElement("p");
+                        total_items.innerHTML = `You previously had ${tot} items in your car`;
+                        document.body.append(total_items);
+                    }
+
+                }
+            
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

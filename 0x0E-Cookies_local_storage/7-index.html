@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script>
+        let availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+        if (typeof(sessionStorage) == undefined){
+            alert("Sorry, your browser does not support Web storage. Try again with a better now");
+        }
+        if (typeof(sessionStorage) != undefined){
+            window.onload = function(){
+                createStore();
+                displayCart();
+            };
+        }
+        function getCartFromStorage(){
+            if (sessionStorage.cart)
+                return JSON.parse(sessionStorage.cart);
+            }
+            return {};
+        }
+        
+        function addItemToCart(item){
+            let cart = getCartFromStorage();
+            if(cart[item]){
+                cart[item] += 1;
+            }
+            else{
+                cart[item] = 1; 
+            }
+            sessionStorage.cart = JSON.stringify(cart);
+            displayCart();
+        }
+
+        function removeItemfromCart(item){
+            let cart = getCartFromStorage();
+            delete cart[item];
+            sessionStorage.cart = JSON.stringify(cart);
+            displayCart();
+        }
+
+        function clearCart(){
+            sessionStorage.clear();
+        }
+
+        function createStore(){
+            let heading = document.createElement("h2");
+            heading.innerHTML = "Available products: ";
+            let unorderedlist = document.createElement("ul");
+            for (let i = 0; i < availableItems.length; i++){
+                let li = document.createElement("li");
+                li.onclick = function(){addItemToCart(availableItems[i])};
+                li.appendChild(document.createTextNode(availableItems[i]));
+                unorderedlist.appendChild(li);
+            }
+            document.body.append(heading);
+            document.body.append(unorderedlist);
+
+        }
+
+        function displayCart(){
+            if (!document.getElementsByTagName("h2")[1]){
+                let heading_1 = document.createElement("h2");
+                heading_1.textContent = "Your cart";
+                document.body.append(heading_1);
+            }
+        }
+
+        function updateCart(){
+
+        }
+
+    </script>
+    </head>
+    <body>
+
+    </body>
+</html>
