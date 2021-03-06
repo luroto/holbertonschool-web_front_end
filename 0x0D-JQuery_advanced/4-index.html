@@ -11,26 +11,24 @@
                 crossorigin="anonymous"></script>
         <script type="application/javascript">
         function createFamilyTree() {
-            $("body").append(`<table>
-                                <tr>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>
-                                </tr>
-                                <tr>
-                                    <td>Guillaume</td>
-                                    <td>Salva</td>
-                                </tr>
-                                <tr>
-                                    <td>Paulette</td>
-                                    <td>Salva</td>
-                                </tr>
-                                <tr>
-                                    <td>Antoine</td>
-                                    <td>Salva</td>
-                                </tr> 
-                                </table>`);
-                            };
+            $("body").append(
+                $("<table></table>").append(
+                    $("<thead></thead>").append(
+                        $("<tr></tr>").append("<th>Firstname</th>", "<th>Lastname</th>")
+                        ), $("<tbody></tbody>").append(
+                            $("<tr></tr>").append("<td>Guillaume</td>", "<td>Salva</td>"),
+                            $("<tr></tr>").append("<td>Paulette</td>", "<td>Salva</td>"),
+                            $("<tr></tr>").append("<td>Antoine</td>", "<td>Salva</td>"),
+                    )
+                )
+            );
+        };
+        function replaceFamilyTree(){
+            $("tbody").html(
+                $("<tr></tr>").append("<td>Gerard</td>", "<td>Bonissa</td>"));
+        }
         createFamilyTree();
+        replaceFamilyTree();
         </script>
     </head>
 
